@@ -1,0 +1,13 @@
+﻿@model List<Case_Service.Models.Word>
+
+@foreach (var word in Model)
+{
+    <tr>
+        <td>@word.Id</td>
+        <td>@word.Content</td>
+        <td>@word.LetterCounter</td>
+        <td>
+            <a asp-action="Delete" asp-route-id="@word.Id">Delete</a>
+        </td>
+    </tr>
+}

@@ -1,0 +1,62 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model List<Case_Service.Models.Word>
+
+<h2>Word List</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Word</th>
+            <th>Letter Count</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody id="data-container">
+        @await Html.PartialAsync("_DataPartialView", Model)
+    </tbody>
+</table>
+
+<div class="pagination">
+    @if (ViewBag.TotalPages > 1)
+    {
+        for (int i = 1; i <= ViewBag.TotalPages; i++)
+        {
+            <a href="@Url.Action("Index", new { page = i })" class="@(i == ViewBag.CurrentPage ? "active" : "number")">@i</a>
+            @if (i < ViewBag.TotalPages)
+            {
+                <span class="separator">|</span>
+            }
+        }
+    }
+</div>
+
+<style>
+    .pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+    }
+
+    .number {
+        padding: 5px 10px;
+        margin: 0 5px;
+        text-decoration: none;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        color: #333;
+    }
+
+        .number.active {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+    .separator {
+        margin: 0 5px;
+    }
+</style>
